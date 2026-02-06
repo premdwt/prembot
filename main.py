@@ -46,8 +46,7 @@ async def bantuan_command(ctx):
 
     `!ping` - Cek apakah bot aktif
     `!hello` - Bot akan menyapa kamu
-    `!bantuan` - Menampilkan pesan ini 😪
-    `!speedtest` - untuk mengetes kecepatan internet 
+    `!bantuan` - Menampilkan pesan ini 😪 
     `!clear [max 100]` - untuk menghapus pesan 
     `!userinfo` - info profil
 
