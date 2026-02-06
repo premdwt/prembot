@@ -54,34 +54,7 @@ async def bantuan_command(ctx):
     """
     await ctx.send(help_text)
 
-@bot.command(name='speedtest')
-async def speedtest(ctx):
-    """Command untuk cek kecepatan internet"""
-    await ctx.message.delete()  # Hapus pesan user
-    await ctx.send('🌐 Mengukur kecepatan internet... Tunggu sebentar...')
-    
-    try:
-        import speedtest
-        
-        st = speedtest.Speedtest()
-        st.get_best_server()
-        
-        download_speed = st.download() / 1_000_000  # Konversi ke Mbps
-        upload_speed = st.upload() / 1_000_000  # Konversi ke Mbps
-        ping = st.results.ping
-        
-        hasil = f"""
-        **📊 Hasil Speedtest:**
-        
-        🟢 **Ping:** {ping:.2f} ms
-        ⬇️ **Download:** {download_speed:.2f} Mbps
-        ⬆️ **Upload:** {upload_speed:.2f} Mbps
-        
-        """
-        await ctx.send(hasil)
-        
-    except Exception as e:
-        await ctx.send(f'❌ Error: {str(e)}')
+
 
 
 @bot.command(name='clear')
