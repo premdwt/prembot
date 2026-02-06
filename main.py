@@ -1,20 +1,15 @@
 import os
-from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 import asyncio
 
-
-
-# Memuat variabel dari file .env
-load_dotenv()
 
 # Ambil token dari environment variable
 token = os.getenv("DISCORD_TOKEN")
 
 # Cek apakah token berhasil diambil
 if not token:
-    print("Token bot tidak ditemukan!")
+    raise RuntimeError("DISCORD_TOKEN belum diset di Railway Variables")
     exit()  # Keluar jika token tidak ditemukan
 
 
