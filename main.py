@@ -151,6 +151,45 @@ async def userinfo(ctx):
     await ctx.send(embed=embed, delete_after=30)
 
 
+@bot.command(name="uptime")
+async def uptime(ctx):
+    """ini untuk melihat seberapa lama bot menyala"""
+    await ctx.message.delete() # menghapus pesan user
+    up = int(time.time() - start_time)
+    h = up // 3600
+    m = (up % 3600) // 60
+    s = up % 60
+    await ctx.send(f"⏱️ Uptime: **{h}j {m}m {s}d**")
+
+@bot.command(name="serverinfo")
+async def serverinfo(ctx):
+    """info keseluruhan server"""
+    await ctx.message.delete() # menghapus pesan user
+    g = ctx.guild
+    # Mengambil informasi owner
+    owner_name = g.owner.name if g.owner else "Tidak diketahui"
+    await ctx.send(
+        f"🏠 **{g.name}**\n"
+        f"👥 Members: **{g.member_count}**\n"
+        f"📅 Dibuat: **{g.created_at.strftime('%d %B %Y')}**"
+        f"👑 Owner: {owner_name}"
+    )
+
+@bot.command(name="say")
+@commands.has_permissions(manage_messages=True)
+async def say(ctx, *, text: str):
+    """perintah untuk bot mengulangi perkataan"""
+    try:
+        await ctx.message.delete()
+    except:
+        pass
+    await ctx.send(text)
+@say.error
+async def say_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.send("❌ Kamu gak punya izin.")
+
+
 
 
 
