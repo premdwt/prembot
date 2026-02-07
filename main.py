@@ -2,6 +2,8 @@ import os
 import discord
 from discord.ext import commands
 import asyncio
+import time
+start_time = time.time()
 
 
 # Ambil token dari environment variable
