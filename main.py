@@ -49,6 +49,9 @@ async def bantuan_command(ctx):
     `!bantuan` - Menampilkan pesan ini 😪 
     `!clear [max 100]` - untuk menghapus pesan 
     `!userinfo` - info profil
+    `!say` - agar bot mengatakan apa yg lu tulis
+    `serverinfo` - mengetahui server ini
+    `uptime` - waktu bot berjalan
 
     """
     await ctx.send(help_text)
