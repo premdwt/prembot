@@ -70,6 +70,7 @@ async def bantuan_command(ctx):
     `say` - agar bot mengatakan apa yg lu tulis
     `serverinfo` - mengetahui server ini
     `uptime` - waktu bot berjalan
+    `avatar` - deploy pict profil discord
 
     """
     await ctx.send(help_text)
@@ -235,7 +236,7 @@ async def avatar(ctx, member: discord.Member = None):
     embed.set_footer(text=f"Diminta oleh: {ctx.author.display_name}")
 
     await ctx.send(embed=embed)
-    
+
 
 
 # Ganti TOKEN_DISINI dengan token bot kamu
