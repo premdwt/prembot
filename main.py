@@ -18,6 +18,22 @@ if not token:
 # Konfigurasi bot
 intents = discord.Intents.default()
 intents.message_content = True
+intents.members = True
+intents.presences = True
+
+async def safe_delete(ctx):
+    try:
+        await ctx.message.delete()
+    except:
+        pass
+
+
+
+async def safe_delete(ctx):
+    try:
+        await ctx.message.delete()
+    except:
+        pass
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
@@ -46,12 +62,12 @@ async def bantuan_command(ctx):
     help_text = """
     **📚 Daftar Command Bot:**
 
-    `!ping` - Cek apakah bot aktif
-    `!hello` - Bot akan menyapa kamu
-    `!bantuan` - Menampilkan pesan ini 😪 
-    `!clear [max 100]` - untuk menghapus pesan 
-    `!userinfo` - info profil
-    `!say` - agar bot mengatakan apa yg lu tulis
+    `ping` - Cek apakah bot aktif
+    `hello` - Bot akan menyapa kamu
+    `bantuan` - Menampilkan pesan ini 😪 
+    `clear [max 100]` - untuk menghapus pesan 
+    `userinfo` - info profil
+    `say` - agar bot mengatakan apa yg lu tulis
     `serverinfo` - mengetahui server ini
     `uptime` - waktu bot berjalan
 
@@ -82,7 +98,7 @@ async def clear_messages(ctx, amount: int = 5):
     
     try:
         # Hapus pesan
-        deleted = await ctx.channel.purge(limit=amount)
+        deleted = await ctx.channel.purge(limit=amount+1)
         
         # Kirim konfirmasi
         await ctx.send(f'🗑️ **{len(deleted)}** pesan telah dihapus!', delete_after=3)
@@ -195,7 +211,31 @@ async def say_error(ctx, error):
         await ctx.send("❌ Kamu gak punya izin.")
 
 
+@bot.command(name="avatar")
+async def avatar(ctx, member: discord.Member = None):
+    """
+    Ambil avatar user.
+    Pakai:
+    -avatar
+    -avatar @user
+    """
+    try:
+        await ctx.message.delete()
+    except:
+        pass
 
+    member = member or ctx.author
+    avatar_url = member.display_avatar.url  # aman untuk avatar server/global
+
+    embed = discord.Embed(
+        title=f"🖼️ Avatar: {member}",
+        color=discord.Color.blue()
+    )
+    embed.set_image(url=avatar_url)
+    embed.set_footer(text=f"Diminta oleh: {ctx.author.display_name}")
+
+    await ctx.send(embed=embed)
+    
 
 
 # Ganti TOKEN_DISINI dengan token bot kamu
